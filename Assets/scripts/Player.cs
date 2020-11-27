@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Vector2 velocity;
+    public LayerMask wallMask;
 
     private bool walk, walk_left, walk_right, jump;
     // Start is called before the first frame update
@@ -39,9 +40,13 @@ public class Player : MonoBehaviour
                 pos.x += velocity.x * Time.deltaTime;
                 scale.x = 1;
             }
+
+            pos = checkWallRays(pos, scale.x);
         }
         transform.localPosition = pos;
         transform.localScale = scale;
+
+        
     }
     
     //check player input method 
@@ -56,5 +61,24 @@ public class Player : MonoBehaviour
         walk_right = !input_left && input_right;
 
         jump = input_space;
+    }
+
+    Vector3 checkWallRays (Vector3 pos, float direction)
+    {
+        Vector2 playerTop = new Vector2(pos.x + direction * .4f, pos.y + 1f - 0.2f);
+        Vector2 playerMid = new Vector2(pos.x + direction * .4f, pos.y );
+        Vector2 playerBottom = new Vector2(pos.x + direction * .4f, pos.y - 1f);
+
+        RaycastHit2D wallTop = Physics2D.Raycast(playerTop, new Vector2(direction,0),velocity.x*Time.deltaTime,wallMask);
+        RaycastHit2D wallMiddle = Physics2D.Raycast(playerMid, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
+        RaycastHit2D wallBottom = Physics2D.Raycast(playerBottom, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
+
+        if (wallTop.collider != null || wallMiddle.collider != null || wallBottom.collider != null)
+        {
+            pos.x -= direction * Time.deltaTime * velocity.x;
+        }
+
+        return pos;
+
     }
 }
