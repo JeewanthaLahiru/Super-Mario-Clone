@@ -296,14 +296,30 @@ PrefabInstance:
     - target: {fileID: 2239316308841914029, guid: a2921b55bcf164853960c853662332ad,
         type: 3}
       propertyPath: velocity.x
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2239316308841914029, guid: a2921b55bcf164853960c853662332ad,
         type: 3}
       propertyPath: wallMask.m_Bits
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2239316308841914029, guid: a2921b55bcf164853960c853662332ad,
+        type: 3}
+      propertyPath: floorMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239316308841914029, guid: a2921b55bcf164853960c853662332ad,
+        type: 3}
+      propertyPath: gravity
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239316308841914029, guid: a2921b55bcf164853960c853662332ad,
+        type: 3}
+      propertyPath: jumpVelocity
+      value: 25
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2239316308841914029, guid: a2921b55bcf164853960c853662332ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a2921b55bcf164853960c853662332ad, type: 3}
 --- !u!1001 &291378544
 PrefabInstance:
@@ -1101,6 +1117,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 291378544}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1830324945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 103438, guid: a2921b55bcf164853960c853662332ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 174232543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1830324947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830324945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6942b8a09ac31b4aad247256a746a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 10, y: 0}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 1
+  gravity: 65
+  jumpVelocity: 25
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  playerState: 1
 --- !u!1001 &1929862212
 PrefabInstance:
   m_ObjectHideFlags: 0

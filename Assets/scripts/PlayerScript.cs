@@ -7,7 +7,22 @@ public class PlayerScript : MonoBehaviour
     public Vector2 velocity;
     public LayerMask wallMask;
 
+    public float gravity = 65f;
+    public float jumpVelocity = 25f;
+    public LayerMask groundMask;
+
+    private bool grounded = false;
+
     private bool walk, walk_left, walk_right, jump;
+
+    public enum PlayerState
+    {
+        jumping,
+        idle,
+        walking
+    }
+
+    public PlayerState playerState = PlayerState.idle;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +54,23 @@ public class PlayerScript : MonoBehaviour
                 pos.x += velocity.x * Time.deltaTime;
                 scale.x = 1;
             }
+
+            pos = CheckWallRays(pos, scale.x);
         }
+
+        if (jump && playerState != PlayerState.jumping)
+        {
+            playerState = PlayerState.jumping;
+            velocity = new Vector2(velocity.x, jumpVelocity);
+        }
+
+        if (playerState == PlayerState.jumping)
+        {
+            pos.y += velocity.y * Time.deltaTime;
+            velocity.y -= gravity * Time.deltaTime;
+        }
+        if (velocity.y <= 0)
+            pos = CheckFloorRays(pos);
 
         transform.localPosition = pos;
         transform.localScale = scale;
@@ -56,4 +87,74 @@ public class PlayerScript : MonoBehaviour
         walk_right = input_right && !input_left;
         jump = input_jump;
     }
+
+    Vector3 CheckWallRays(Vector3 pos, float direction)
+    {
+        Vector2 originTop = new Vector2(pos.x + 0.4f * direction, pos.y + 1f - 0.2f);
+        Vector2 originMid = new Vector2(pos.x + 0.4f * direction, pos.y);
+        Vector2 originBottom = new Vector2(pos.x + 0.4f * direction, pos.y - 1f);
+
+        RaycastHit2D wallTop = Physics2D.Raycast(originTop, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
+        RaycastHit2D wallMid = Physics2D.Raycast(originMid, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
+        RaycastHit2D wallBottom = Physics2D.Raycast(originBottom, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
+
+        if (wallTop.collider != null || wallMid.collider != null || wallTop.collider != null)
+        {
+            pos.x -= velocity.x * direction * Time.deltaTime;
+        }
+
+        return pos;
+    }
+
+    Vector3 CheckFloorRays(Vector3 pos)
+    {
+        Vector2 originLeft = new Vector2(pos.x - 0.5f + 0.2f, pos.y - 1f);
+        Vector2 originMiddle = new Vector2(pos.x, pos.y - 1f);
+        Vector2 originRight = new Vector2(pos.x + 0.5f - 0.2f, pos.y - 1f);
+
+        RaycastHit2D floorLeft = Physics2D.Raycast(originLeft, Vector2.down, velocity.y * Time.deltaTime, groundMask);
+        RaycastHit2D floorMiddle = Physics2D.Raycast(originMiddle, Vector2.down, velocity.y * Time.deltaTime, groundMask);
+        RaycastHit2D floorRight = Physics2D.Raycast(originRight, Vector2.down, velocity.y * Time.deltaTime, groundMask);
+
+        if (floorLeft.collider != null || floorMiddle.collider != null || floorRight.collider != null)
+        {
+            RaycastHit2D hitRay = floorRight;
+            if (floorLeft)
+            {
+                hitRay = floorLeft;
+            }
+            else if (floorMiddle)
+            {
+                hitRay = floorMiddle;
+            }
+            else if (floorRight)
+            {
+                hitRay = floorRight;
+            }
+
+            playerState = PlayerState.idle;
+            grounded = true;
+            velocity.y = 0;
+
+            pos.y = hitRay.collider.bounds.center.y + hitRay.collider.bounds.size.y / 2 + 1;
+        }
+        else
+        {
+            if (playerState != PlayerState.jumping)
+            {
+                Fall();
+            }
+        }
+
+        return pos;
+
+    }
+
+    void Fall()
+    {
+        velocity.y = 0;
+        playerState = PlayerState.jumping;
+        grounded = false;
+    }
+
 }
