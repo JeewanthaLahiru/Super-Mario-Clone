@@ -451,7 +451,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.4669811, g: 0.6213342, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1374,6 +1374,21 @@ PrefabInstance:
     - target: {fileID: 414000, guid: 4ba430f162f394ec89163bcf70a24ee8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324819078532251250, guid: 4ba430f162f394ec89163bcf70a24ee8,
+        type: 3}
+      propertyPath: velocicy.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324819078532251250, guid: 4ba430f162f394ec89163bcf70a24ee8,
+        type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324819078532251250, guid: 4ba430f162f394ec89163bcf70a24ee8,
+        type: 3}
+      propertyPath: gravity
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ba430f162f394ec89163bcf70a24ee8, type: 3}

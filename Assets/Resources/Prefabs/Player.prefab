@@ -135,6 +135,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4333185d850055c40afbe693103ab3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpVelocity: 0
+  velocity: {x: 0, y: 0}
+  gravity: 0
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerState: 1
 --- !u!61 &6102348
 BoxCollider2D:
   m_ObjectHideFlags: 0
