@@ -1390,6 +1390,11 @@ PrefabInstance:
       propertyPath: gravity
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 5324819078532251250, guid: 4ba430f162f394ec89163bcf70a24ee8,
+        type: 3}
+      propertyPath: wallMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ba430f162f394ec89163bcf70a24ee8, type: 3}
 --- !u!1001 &2088317540

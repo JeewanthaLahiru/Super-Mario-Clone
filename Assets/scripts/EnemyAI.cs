@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
     public float gravity;
     public Vector2 velocicy;
     public LayerMask groundMask;
+    public LayerMask wallMask;
     public bool walk_left = true;
 
     public bool grounded = false;
@@ -63,6 +64,8 @@ public class EnemyAI : MonoBehaviour
             if (velocicy.y <= 0)
                 pos = CheckGround(pos);
 
+            CheckWalls(pos, scale.x);
+
             transform.localPosition = pos;
             transform.localScale = scale;
         }
@@ -107,6 +110,36 @@ public class EnemyAI : MonoBehaviour
             }
         }
         return pos;
+    }
+
+    void CheckWalls(Vector3 pos, float direction)
+    {
+        Vector2 origin_top = new Vector2(pos.x + direction * 0.4f, pos.y + 0.5f - 0.2f);
+        Vector2 origin_mid = new Vector2(pos.x + direction * 0.4f, pos.y);
+        Vector2 origin_bottom = new Vector2(pos.x + direction * 0.4f, pos.y - 0.5f + 0.2f);
+
+        RaycastHit2D wallTop = Physics2D.Raycast(origin_top, new Vector2(direction, 0), velocicy.x * Time.deltaTime, wallMask);
+        RaycastHit2D wallMid = Physics2D.Raycast(origin_mid, new Vector2(direction, 0), velocicy.x * Time.deltaTime, wallMask);
+        RaycastHit2D wallBottom = Physics2D.Raycast(origin_bottom, new Vector2(direction, 0), velocicy.x * Time.deltaTime, wallMask);
+
+        if (wallTop.collider != null || wallMid.collider != null || wallBottom.collider != null)
+        {
+            RaycastHit2D hitray = wallTop;
+            if (wallTop)
+            {
+                hitray = wallTop;
+            }
+            else if (wallMid)
+            {
+                hitray = wallMid;
+            }
+            else if (wallBottom)
+            {
+                hitray = wallBottom;
+            }
+
+            walk_left = !walk_left;
+        }
     }
 
     
