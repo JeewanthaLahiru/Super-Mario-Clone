@@ -187,6 +187,11 @@ public class PlayerScript : MonoBehaviour
                 hitRay = floorRight;
             }
 
+            if (hitRay.collider.tag == "Enemy")
+            {
+                hitRay.collider.GetComponent<EnemyAI>().Crush();
+            }
+
             playerState = PlayerState.idle;
             grounded = true;
             velocity.y = 0;

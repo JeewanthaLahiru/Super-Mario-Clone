@@ -12,6 +12,11 @@ public class EnemyAI : MonoBehaviour
 
     public bool grounded = false;
 
+    private bool shouldDie = false;
+    private float deathTimer = 0;
+
+    public float timeForDestroy = 1.0f;
+
     public enum EnemyState
     {
         walking,
@@ -32,6 +37,32 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         EnemyPositionUpdate();
+        CheckCrushed();
+    }
+
+
+    public void Crush()
+    {
+        enemyState = EnemyState.dead;
+        GetComponent<Animator>().SetBool("isCrushed", true);
+        GetComponent<Collider2D>().enabled = false;
+        shouldDie = true;
+    }
+
+    public void CheckCrushed()
+    {
+        if (shouldDie)
+        {
+            if (deathTimer <= timeForDestroy)
+            {
+                deathTimer += Time.deltaTime;
+            }
+            else
+            {
+                shouldDie = false;
+                Destroy(this.gameObject);
+            }
+        }
     }
 
 
