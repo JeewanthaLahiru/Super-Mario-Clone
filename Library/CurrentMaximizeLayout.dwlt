@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 681, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 2460
+  controlID: 343
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 2461
+  controlID: 302
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 224}
   m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 2462
+  controlID: 281
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -174,8 +174,8 @@ MonoBehaviour:
     y: 0
     width: 298
     height: 448
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -255,8 +255,8 @@ MonoBehaviour:
     y: 0
     width: 960
     height: 448
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 8}
@@ -408,10 +408,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: c5d2c315797914f1fb69187823fe2fdb,
+  m_AnimatorController: {fileID: 9100000, guid: ff525c269cce04a46bd2f702aeb684ad,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 110766338, guid: c5d2c315797914f1fb69187823fe2fdb, type: 2}
+  - m_Target: {fileID: 110799416, guid: ff525c269cce04a46bd2f702aeb684ad, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -515,19 +515,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations/Enemy
+    - Assets/scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Animations/Enemy
+  - Assets/scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\unity object\mario clone
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 17}
-    m_SelectedIDs: c80b0000
-    m_LastClickedID: 3016
+    m_SelectedIDs: d0090000
+    m_LastClickedID: 2512
     m_ExpandedIDs: 000000009e090000300a00000a0c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -581,8 +581,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: fc0c0000
-    m_LastClickedInstanceID: 3324
+    m_SelectedInstanceIDs: c0070000
+    m_LastClickedInstanceID: 1984
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300006eb80000f8120000e60d00004e0b000000000000
     m_RenameOverlay:

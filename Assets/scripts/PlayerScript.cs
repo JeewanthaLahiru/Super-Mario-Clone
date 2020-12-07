@@ -9,9 +9,11 @@ public class PlayerScript : MonoBehaviour
 
     public float gravity = 65f;
     public float jumpVelocity = 25f;
+    public float bounceVelocity = 10f;
     public LayerMask groundMask;
 
     private bool grounded = false;
+    private bool bouncing = false;
 
     private bool walk, walk_left, walk_right, jump;
 
@@ -19,7 +21,8 @@ public class PlayerScript : MonoBehaviour
     {
         jumping,
         idle,
-        walking
+        walking,
+        bouncing
     }
 
     public PlayerState playerState = PlayerState.idle;
@@ -70,6 +73,18 @@ public class PlayerScript : MonoBehaviour
             pos.y += velocity.y * Time.deltaTime;
             velocity.y -= gravity * Time.deltaTime;
         }
+
+        if (bouncing && playerState != PlayerState.bouncing)
+        {
+            playerState = PlayerState.bouncing;
+            velocity = new Vector2(velocity.x, bounceVelocity);
+        }
+        if (playerState == PlayerState.bouncing)
+        {
+            pos.y += velocity.y * Time.deltaTime;
+            velocity.y -= gravity * Time.deltaTime;
+        }
+
         if (velocity.y <= 0)
             pos = CheckFloorRays(pos);
 
@@ -189,6 +204,7 @@ public class PlayerScript : MonoBehaviour
 
             if (hitRay.collider.tag == "Enemy")
             {
+                bouncing = true;
                 hitRay.collider.GetComponent<EnemyAI>().Crush();
             }
 
@@ -214,6 +230,7 @@ public class PlayerScript : MonoBehaviour
     {
         velocity.y = 0;
         playerState = PlayerState.jumping;
+        bouncing = false;
         grounded = false;
     }
 
