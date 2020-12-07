@@ -96,6 +96,12 @@ public class EnemyAI : MonoBehaviour
             {
                 hitRay = ground_right;
             }
+
+            if (hitRay.collider.tag == "Player")
+            {
+                Application.LoadLevel("GameOver");
+            }
+
             pos.y = hitRay.collider.bounds.center.y + hitRay.collider.bounds.size.y / 2 + 0.5f;
             enemyState = EnemyState.walking;
             grounded = true;
@@ -136,6 +142,11 @@ public class EnemyAI : MonoBehaviour
             else if (wallBottom)
             {
                 hitray = wallBottom;
+            }
+
+            if (hitray.collider.tag == "Player")
+            {
+                Application.LoadLevel("GameOver");
             }
 
             walk_left = !walk_left;
