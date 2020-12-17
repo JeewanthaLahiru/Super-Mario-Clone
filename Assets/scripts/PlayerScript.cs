@@ -97,7 +97,7 @@ public class PlayerScript : MonoBehaviour
 
     void AnimationController()
     {
-        if (grounded && !walk)
+        if (grounded && !walk &&!bouncing)
         {
             GetComponent<Animator>().SetBool("isRunning", false);
             GetComponent<Animator>().SetBool("isJumping", false);
