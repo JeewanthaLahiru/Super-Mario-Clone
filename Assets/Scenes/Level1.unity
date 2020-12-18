@@ -398,6 +398,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0114cdacba174488c92aa1edf31baed1, type: 3}
+--- !u!1 &465579519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 112090, guid: bf1f0766c99f04c47afb988e39cfa5cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1073498930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &465579520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465579519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c140414a13157d439a642acf250a5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,6 +1159,7 @@ MonoBehaviour:
     m_Bits: 1
   gravity: 65
   jumpVelocity: 25
+  bounceVelocity: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 513
